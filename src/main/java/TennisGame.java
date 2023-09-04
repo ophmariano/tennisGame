@@ -1,5 +1,5 @@
 public class TennisGame {
-  public TennisGame(){};
+  public TennisGame(){}
 
   public String play() {
     //start game

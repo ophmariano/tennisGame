@@ -28,7 +28,7 @@ public class Main {
       }
     }
     return playerAnswer.equals("y");
-  };
+  }
 
 //  private static void startGame(String playerOneName, String playerTwoName) {
 //    if (playerOneName.isEmpty() || playerTwoName.isEmpty()) {
