@@ -1,9 +1,5 @@
-package main.java;
-
 public class Player {
-  String name;
-  int score;
-
+  private final String name;
   boolean advantage;
 
   public boolean hasAdvantage() {
@@ -18,11 +14,7 @@ public class Player {
     this.name = name;
   }
 
-  public int getScore() {
-    return score;
-  }
-
-  public void setScore(int score) {
-    this.score = score;
+  public String getName() {
+    return name;
   }
 }
