@@ -1,21 +1,34 @@
+import java.util.Scanner;
+
 public class Main {
   public static void main(String[] args) {
-    //start game
-    Player playerOne = new Player("Jo");
-    Player playerTwo = new Player("Ha");
-    Game game = new Game(playerOne, playerTwo);
-    while (!game.hasWinner()) {
-      //KeepPlaying
-//      game.setWinnerPlayer(playerOne);
-      game.setWinnerPlayer(playerTwo);
-      game.setHasWinner(true);
-    }
-    System.out.println(game.getWinnerPlayer().getName());
-//
-    // print the evolution and after the winner.
-//    System.out.println(playerOneName);
+    Scanner scanner = new Scanner(System.in);
+    boolean keepPlaying = true;
+    TennisGame tennisGame = new TennisGame();
 
+    while (keepPlaying) {
+      String winnerMessage = tennisGame.play();
+      System.out.println(winnerMessage);
+      keepPlaying = keepPlaying(scanner);
+    }
+
+    System.out.println("Thank you for playing with us!");
   }
+
+  private static boolean keepPlaying(Scanner scanner) {
+    boolean validAnswer = false;
+    String playerAnswer = "";
+    while (!validAnswer) {
+      System.out.println("Play another game? (Y/N)");
+      playerAnswer = scanner.nextLine().toLowerCase();  // Read user input
+      if (playerAnswer.equals("y") || playerAnswer.equals("n")) {
+        validAnswer = true;
+      } else {
+        System.out.println("Invalid answer, please try again.");
+      }
+    }
+    return playerAnswer.equals("y");
+  };
 
 //  private static void startGame(String playerOneName, String playerTwoName) {
 //    if (playerOneName.isEmpty() || playerTwoName.isEmpty()) {
