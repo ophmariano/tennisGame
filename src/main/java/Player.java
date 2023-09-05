@@ -1,4 +1,5 @@
 public class Player {
+
   private final String name;
   boolean advantage;
 
