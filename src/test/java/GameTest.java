@@ -34,8 +34,8 @@ class GameTest {
     //When
     Game newGame = new Game(playerOne, playerTwo);
     //Then
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, newGame.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, newGame.getPlayerTwoScore());
   }
 
   @Test
