@@ -1,24 +1,22 @@
-package features.game;
+package features.gameset;
 
 import features.player.Player;
+import features.printdisplay.MessageDisplay;
 
-public class Game {
-
+public class GameSet {
   private final Player playerOne;
   private final Player playerTwo;
   private int playerOneScore;
   private int playerTwoScore;
-  private boolean deuce;
-  private boolean hasWinner;
   private Player winnerPlayer;
+  private boolean deuce;
 
   // TODO: Paulo - [feature-01] make it singleton
-  public Game(Player playerOne, Player playerTwo) {
+  public GameSet(Player playerOne, Player playerTwo) {
     this.playerOne = playerOne;
     this.playerTwo = playerTwo;
     this.playerOneScore = 0;
     this.playerTwoScore = 0;
-    this.deuce = false;
   }
 
   public void scorePointForPlayerOne(Player player) {
@@ -56,6 +54,15 @@ public class Game {
       return getPlayerTwoScore();
     }
   }
+  public void checkForDeuce(GameSet gameSet, Player gameSetWinner) {
+    if (gameSet.getPlayerScore(gameSetWinner) < 3) {
+      return;
+    }
+    if (gameSet.getPlayerOneScore() == gameSet.getPlayerTwoScore()){
+      setDeuce(true);
+      MessageDisplay.gameInDeuce();
+    }
+  }
 
   public int getPlayerOneScore() {
     return playerOneScore;
@@ -65,20 +72,12 @@ public class Game {
     return playerTwoScore;
   }
 
-  public boolean isDeuce() {
-    return deuce;
+  public Player getPlayerOne() {
+    return playerOne;
   }
 
-  public void setDeuce(boolean deuce) {
-    this.deuce = deuce;
-  }
-
-  public boolean hasWinner() {
-    return hasWinner;
-  }
-
-  public void setHasWinner(boolean hasWinner) {
-    this.hasWinner = hasWinner;
+  public Player getPlayerTwo() {
+    return playerTwo;
   }
 
   public Player getWinnerPlayer() {
@@ -91,5 +90,38 @@ public class Game {
 
   public int getScoreDifference() {
     return Math.abs(getPlayerOneScore() - getPlayerTwoScore());
+  }
+
+  public void setDeuce(boolean deuce) {
+    this.deuce = deuce;
+  }
+
+  public boolean isDeuce() {
+    return deuce;
+  }
+
+  public Player playPoint() {
+    double random = Math.random();
+    if (random > 0.5) {
+      return playerOne;
+    }
+    return playerTwo;
+  }
+
+  public boolean hasVictoryCondition(Player pointWinner) {
+      int gameSetWinnerScore = getPlayerScore(pointWinner);
+      if (gameSetWinnerScore < 3) {
+        return false;
+      }
+      int scoreDifference = getScoreDifference();
+      return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
+  }
+
+  public void scoreWinnerPoint(Player pointWinner) {
+      if (playerOne.getName().equals(pointWinner.getName())) {
+        scorePointForPlayerOne(pointWinner);
+      } else {
+        scorePointForPlayerTwo(pointWinner);
+      }
   }
 }

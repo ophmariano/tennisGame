@@ -1,5 +1,5 @@
-import features.game.Game;
-import features.tennisgame.TennisGame;
+import features.gameset.GameSet;
+import features.tennismatch.TennisMatch;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,13 +7,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class TennisGameTest {
+public class TennisMatchTest {
 
-  private TennisGame tennisGame;
+  private TennisMatch tennisMatch;
 
   @BeforeEach
   void setUp() {
-    tennisGame = new TennisGame();
+    tennisMatch = new TennisMatch();
   }
 
   @Test
@@ -21,13 +21,13 @@ public class TennisGameTest {
     //Given
     int expectedPoint = 1;
     //When
-    Game game = tennisGame.playTennisGame();
+    GameSet gameSet = tennisMatch.playTennisMatch("Jo", "Ha");
 
     //Then
     int gameScoreDifference = Math.abs(
-      game.getPlayerOneScore() - game.getPlayerTwoScore()
+      gameSet.getPlayerOneScore() - gameSet.getPlayerTwoScore()
     );
-    Assertions.assertTrue(game.hasWinner());
+    Assertions.assertTrue(gameSet.hasWinner());
     Assertions.assertEquals(expectedPoint, gameScoreDifference);
   }
 }
@@ -41,7 +41,10 @@ public class TennisGameTest {
 //40-30 -> 3
 //50-30 -> 4 = 1win
 //-------------
+//30-40 -> 2
 //40-40 -> 3 = deuce
-//50-40 -> 4
-//60-40 -> 5 = 1win
+//50-40 -> 4 = Advantage A
+//50-50 -> 5 = deuce -> player A loose advantage
+//50-60 -> 6 = Advantage B
+//50-70 -> 5 = win B
 //------------

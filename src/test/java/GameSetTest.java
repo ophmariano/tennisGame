@@ -1,14 +1,14 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import features.game.Game;
+import features.gameset.GameSet;
 import features.player.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class GameTest {
+class GameSetTest {
 
-  private Game game;
+  private GameSet gameSet;
   private Player playerOne;
   private Player playerTwo;
 
@@ -16,14 +16,14 @@ class GameTest {
   void setUp() {
     playerOne = new Player("Jo");
     playerTwo = new Player("Ha");
-    game = new Game(playerOne, playerTwo);
+    gameSet = new GameSet(playerOne, playerTwo);
   }
 
   @AfterEach
   void tearDown() {
     playerOne = null;
     playerTwo = null;
-    game = null;
+    gameSet = null;
   }
 
   @Test
@@ -34,10 +34,10 @@ class GameTest {
     Player playerOne = new Player("Jo");
     Player playerTwo = new Player("Ha");
     //When
-    Game newGame = new Game(playerOne, playerTwo);
+    GameSet newGameSet = new GameSet(playerOne, playerTwo);
     //Then
-    assertEquals(expectedScorePlayerOne, newGame.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, newGame.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, newGameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, newGameSet.getPlayerTwoScore());
   }
 
   @Test
@@ -46,10 +46,10 @@ class GameTest {
     int expectedScorePlayerOne = 1;
     int expectedScorePlayerTwo = 0;
     //When
-    game.scorePointForPlayerOne(playerOne);
+    gameSet.scorePointForPlayerOne(playerOne);
     //Then
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
 
   @Test
@@ -58,10 +58,10 @@ class GameTest {
     int expectedScorePlayerOne = 0;
     int expectedScorePlayerTwo = 1;
     //When
-    game.scorePointForPlayerTwo(playerTwo);
+    gameSet.scorePointForPlayerTwo(playerTwo);
     //Then
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
 
   @Test
@@ -77,13 +77,13 @@ class GameTest {
     //When
     Exception exception = assertThrows(
       IllegalArgumentException.class,
-      () -> game.scorePointForPlayerTwo(playerOne)
+      () -> gameSet.scorePointForPlayerTwo(playerOne)
     );
 
     //Then
     assertEquals(expectedErrorMessage, exception.getMessage());
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
 
   @Test
@@ -99,13 +99,13 @@ class GameTest {
     //When
     Exception exception = assertThrows(
       IllegalArgumentException.class,
-      () -> game.scorePointForPlayerOne(playerTwo)
+      () -> gameSet.scorePointForPlayerOne(playerTwo)
     );
 
     //Then
     assertEquals(expectedErrorMessage, exception.getMessage());
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
 
   @Test
@@ -113,14 +113,14 @@ class GameTest {
     //Given
     int expectedScorePlayerOne = 0;
     int expectedScorePlayerTwo = 1;
-    game.scorePointForPlayerTwo(playerTwo);
+    gameSet.scorePointForPlayerTwo(playerTwo);
 
     //When
-    int playerScore = game.getPlayerScore(playerTwo);
+    int playerScore = gameSet.getPlayerScore(playerTwo);
 
     //Then
-    assertEquals(expectedScorePlayerOne, game.getPlayerOneScore());
-    assertEquals(expectedScorePlayerTwo, game.getPlayerTwoScore());
+    assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
+    assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
     assertEquals(expectedScorePlayerTwo, playerScore);
   }
 }

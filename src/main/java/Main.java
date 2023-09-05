@@ -1,4 +1,4 @@
-import features.tennisgame.TennisGame;
+import features.tennismatch.TennisMatch;
 import java.util.Scanner;
 
 public class Main {
@@ -8,8 +8,8 @@ public class Main {
     boolean keepPlaying = true;
 
     while (keepPlaying) {
-      TennisGame tennisGame = new TennisGame();
-      tennisGame.playTennisGame();
+      TennisMatch tennisMatch = new TennisMatch();
+      tennisMatch.playTennisMatch("Gueku", "Kengu");
       keepPlaying = keepPlaying(scanner);
     }
 
