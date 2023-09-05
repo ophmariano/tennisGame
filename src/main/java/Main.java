@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     boolean keepPlaying = true;
@@ -19,7 +20,7 @@ public class Main {
     String playerAnswer = "";
     while (!validAnswer) {
       System.out.println("Play another game? (Y/N)");
-      playerAnswer = scanner.nextLine().toLowerCase();  // Read user input
+      playerAnswer = scanner.nextLine().toLowerCase();
       if (playerAnswer.equals("y") || playerAnswer.equals("n")) {
         validAnswer = true;
       } else {
@@ -28,35 +29,4 @@ public class Main {
     }
     return playerAnswer.equals("y");
   }
-
-//  private static void startGame(String playerOneName, String playerTwoName) {
-//    if (playerOneName.isEmpty() || playerTwoName.isEmpty()) {
-//      return; //exception
-//    }
-//
-//    Player playerOne = new Player(playerOneName);
-//    Player playerTwo = new Player(playerTwoName);
-//
-//    Player winnerOfSet = playGameSet(playerOne, playerTwo);
-//    scoringPoint(playerOne, playerTwo, winnerOfSet);
-//
-//    //victoryConditions - having 4 points or 2 more when in deuce
-//    int victoryPointsCondition = 4;
-//    if (winnerOfSet.getScore() > victoryPointsCondition && winnerOfSet.hasAdvantage()) {
-//      //Enter EndGame
-//      if (checkForDeuce(playerOne, playerTwo)) {
-//        // KeepPlaying
-//      }
-//      //won the game
-//    }
-//    int i = playerOne.getScore() - playerTwo.getScore();
-//
-//
-//    //gameEnd
-//  }
-//
-//  private static boolean checkForDeuce() {
-//    return gameIsDeuce;
-//  }
-//
 }
