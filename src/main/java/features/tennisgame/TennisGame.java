@@ -1,3 +1,8 @@
+package features.tennisgame;
+
+import features.game.Game;
+import features.player.Player;
+
 public class TennisGame {
 
   private final Player playerOne;
@@ -18,6 +23,19 @@ public class TennisGame {
         game.setWinnerPlayer(gameSetWinner);
       }
     }
+    String winnerMessage = String.format(
+      "Contratulations on winning %s",
+      game.getWinnerPlayer().getName()
+    );
+    String gameScoreBoard = String.format(
+      "Game score was: %s | %s - %s | %s",
+      playerOne.getName(),
+      game.getPlayerOneScore(),
+      game.getPlayerTwoScore(),
+      playerTwo.getName()
+    );
+    System.out.println(gameScoreBoard);
+    System.out.println(winnerMessage);
     return game;
   }
 

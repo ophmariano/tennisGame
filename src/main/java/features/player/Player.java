@@ -1,3 +1,5 @@
+package features.player;
+
 public class Player {
 
   private final String name;

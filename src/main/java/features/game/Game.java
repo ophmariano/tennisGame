@@ -1,3 +1,7 @@
+package features.game;
+
+import features.player.Player;
+
 public class Game {
 
   private final Player playerOne;
