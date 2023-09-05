@@ -4,25 +4,25 @@ import features.gameset.GameSet;
 
 public class MessageDisplay {
 
-  private static void printMessage(String message){
+  private static void printMessage(String message) {
     System.out.println(message);
-  };
+  }
 
   public static void finalGameScore(GameSet gameSet) {
     String gameFinalScoreBoard = String.format(
-        "Game score was: %s | %s - %s | %s",
-        gameSet.getPlayerOne().getName(),
-        gameSet.getPlayerOneScore(),
-        gameSet.getPlayerTwoScore(),
-        gameSet.getPlayerTwo().getName()
+      "Game score was: %s | %s - %s | %s",
+      gameSet.getPlayerOne().getName(),
+      gameSet.getPlayerOneScore(),
+      gameSet.getPlayerTwoScore(),
+      gameSet.getPlayerTwo().getName()
     );
     printMessage(gameFinalScoreBoard);
   }
 
   public static void winner(String winnerName) {
     String gameWinner = String.format(
-        "Congratulations on winning %s",
-        winnerName
+      "Congratulations on winning %s",
+      winnerName
     );
     printMessage(gameWinner);
   }
@@ -34,19 +34,19 @@ public class MessageDisplay {
 
   public static void playerGainsAdvantage(String playerName) {
     String playerGainsAdvantage = String.format(
-        "Player %s has the advantage",
-        playerName
+      "Player %s has the advantage",
+      playerName
     );
     printMessage(playerGainsAdvantage);
   }
 
   public static void gameScore(GameSet gameSet) {
     String gameFinalScoreBoard = String.format(
-        "%s | %s - %s | %s",
-        gameSet.getPlayerOne().getName(),
-        gameSet.getPlayerOneScore(),
-        gameSet.getPlayerTwoScore(),
-        gameSet.getPlayerTwo().getName()
+      "%s | %s - %s | %s",
+      gameSet.getPlayerOne().getName(),
+      gameSet.getPlayerOneScore(),
+      gameSet.getPlayerTwoScore(),
+      gameSet.getPlayerTwo().getName()
     );
     printMessage(gameFinalScoreBoard);
   }

@@ -28,7 +28,7 @@ public class TennisMatch {
         gameSet.setWinnerPlayer(pointWinner);
       } else {
         gameSet.checkForDeuce(gameSet, pointWinner);
-      };
+      }
     }
     MessageDisplay.winner(gameSet.getWinnerPlayer().getName());
     MessageDisplay.finalGameScore(gameSet);

@@ -4,6 +4,7 @@ import features.player.Player;
 import features.printdisplay.MessageDisplay;
 
 public class GameSet {
+
   private final Player playerOne;
   private final Player playerTwo;
   private int playerOneScore;
@@ -54,11 +55,12 @@ public class GameSet {
       return getPlayerTwoScore();
     }
   }
+
   public void checkForDeuce(GameSet gameSet, Player gameSetWinner) {
     if (gameSet.getPlayerScore(gameSetWinner) < 3) {
       return;
     }
-    if (gameSet.getPlayerOneScore() == gameSet.getPlayerTwoScore()){
+    if (gameSet.getPlayerOneScore() == gameSet.getPlayerTwoScore()) {
       setDeuce(true);
       MessageDisplay.gameInDeuce();
     }
@@ -109,19 +111,19 @@ public class GameSet {
   }
 
   public boolean hasVictoryCondition(Player pointWinner) {
-      int gameSetWinnerScore = getPlayerScore(pointWinner);
-      if (gameSetWinnerScore < 3) {
-        return false;
-      }
-      int scoreDifference = getScoreDifference();
-      return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
+    int gameSetWinnerScore = getPlayerScore(pointWinner);
+    if (gameSetWinnerScore < 3) {
+      return false;
+    }
+    int scoreDifference = getScoreDifference();
+    return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
   }
 
   public void scoreWinnerPoint(Player pointWinner) {
-      if (playerOne.getName().equals(pointWinner.getName())) {
-        scorePointForPlayerOne(pointWinner);
-      } else {
-        scorePointForPlayerTwo(pointWinner);
-      }
+    if (playerOne.getName().equals(pointWinner.getName())) {
+      scorePointForPlayerOne(pointWinner);
+    } else {
+      scorePointForPlayerTwo(pointWinner);
+    }
   }
 }

@@ -1,5 +1,3 @@
 package features.score;
 
-public class ScoreRules {
-
-}
+public class ScoreRules {}

@@ -27,7 +27,7 @@ public class TennisMatchTest {
     int gameScoreDifference = Math.abs(
       gameSet.getPlayerOneScore() - gameSet.getPlayerTwoScore()
     );
-    Assertions.assertTrue(gameSet.hasWinner());
+    Assertions.assertNotNull(gameSet.getWinnerPlayer());
     Assertions.assertEquals(expectedPoint, gameScoreDifference);
   }
 }
