@@ -1,4 +1,5 @@
 public class Game {
+
   private final Player playerOne;
   private final Player playerTwo;
   private int playerOneScore;
@@ -17,22 +18,38 @@ public class Game {
   }
 
   public void scorePointForPlayerOne(Player player) {
-    if (playerOne.getName().equals(player.getName())){
+    if (playerOne.getName().equals(player.getName())) {
       this.playerOneScore++;
     } else {
       //TODO: Paulo - [feature-01] create custom error class
-      String errorMessage = String.format("Was not able to score points for %s. Informed player was %s", playerOne.getName(), player.getName());
-      throw new RuntimeException(errorMessage);
+      String errorMessage = String.format(
+        "Was not able to score points for %s. Informed player was %s",
+        playerOne.getName(),
+        player.getName()
+      );
+      throw new IllegalArgumentException(errorMessage);
     }
   }
 
   public void scorePointForPlayerTwo(Player player) {
-    if (playerTwo.getName().equals(player.getName())){
+    if (playerTwo.getName().equals(player.getName())) {
       this.playerTwoScore++;
     } else {
       //TODO: Paulo - [feature-01] - Create custom error class
-      String errorMessage = String.format("Was not able to score points for %s. Informed player was %s", playerOne.getName(), player.getName());
-      throw new RuntimeException(errorMessage);
+      String errorMessage = String.format(
+        "Was not able to score points for %s. Informed player was %s",
+        playerTwo.getName(),
+        player.getName()
+      );
+      throw new IllegalArgumentException(errorMessage);
+    }
+  }
+
+  public int getPlayerScore(Player player) {
+    if (playerOne.getName().equals(player.getName())) {
+      return getPlayerOneScore();
+    } else {
+      return getPlayerTwoScore();
     }
   }
 
@@ -66,5 +83,9 @@ public class Game {
 
   public void setWinnerPlayer(Player winnerPlayer) {
     this.winnerPlayer = winnerPlayer;
+  }
+
+  public int getScoreDifference() {
+    return Math.abs(getPlayerOneScore() - getPlayerTwoScore());
   }
 }
