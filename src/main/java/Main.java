@@ -4,10 +4,10 @@ public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     boolean keepPlaying = true;
-    TennisGame tennisGame = new TennisGame();
 
     while (keepPlaying) {
-      String winnerMessage = tennisGame.play();
+      TennisGame tennisGame = new TennisGame();
+      String winnerMessage = tennisGame.playTennisGame();
       System.out.println(winnerMessage);
       keepPlaying = keepPlaying(scanner);
     }
@@ -60,26 +60,4 @@ public class Main {
 //    return gameIsDeuce;
 //  }
 //
-//  private static void scoringPoint(Player playerOne, Player playerTwo, Player winnerOfSet) {
-//    int setScore = 1;
-//    if (playerOne.equals(winnerOfSet)) {
-//      int playerScore = playerOne.getScore();
-//      playerOne.setScore(playerScore + setScore);
-//    } else {
-//      int playerScore = playerTwo.getScore();
-//      playerTwo.setScore(playerScore + setScore);
-//    }
-//  }
-//
-//  private static Player playGameSet(Player playerOne, Player playerTwo) {
-//    double random = Math.random();
-//    if (random > 0.5) {
-//      return playerOne;
-//    }
-//    return playerTwo;
-//  }
-
-//  public int getRandomNumber(int min, int max) {
-//
-//}
 }
