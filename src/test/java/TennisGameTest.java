@@ -13,6 +13,7 @@ public class TennisGameTest {
   void setUp() {
     tennisGame = new TennisGame();
   }
+
   @Test
   public void playTennisGameShouldHaveWinnerWithOnePoint() {
     //Given
@@ -21,12 +22,13 @@ public class TennisGameTest {
     Game game = tennisGame.playTennisGame();
 
     //Then
-    int gameScoreDifference = Math.abs(game.getPlayerOneScore() - game.getPlayerTwoScore());
+    int gameScoreDifference = Math.abs(
+      game.getPlayerOneScore() - game.getPlayerTwoScore()
+    );
     Assertions.assertTrue(game.hasWinner());
     Assertions.assertEquals(expectedPoint, gameScoreDifference);
   }
 }
-
 //love-love -> 0
 //15-love -> 1
 //30-0 -> 2

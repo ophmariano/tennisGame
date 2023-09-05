@@ -9,28 +9,16 @@ public class TennisGame {
   }
 
   public Game playTennisGame() {
-    //start game
     Game game = new Game(playerOne, playerTwo);
     while (!game.hasWinner()) {
       Player gameSetWinner = playGameSet(playerOne, playerTwo);
       scoreWinnerPoint(game, gameSetWinner);
-//      game.setWinnerPlayer(playerOne);
-      game.setWinnerPlayer(gameSetWinner);
-      game.setHasWinner(true);
+      if (hasVictoryCondition(game, gameSetWinner)) {
+        game.setHasWinner(true);
+        game.setWinnerPlayer(gameSetWinner);
+      }
     }
     return game;
-//
-    // print the evolution and after the winner.
-//    System.out.println(playerOneName);
-
-  }
-
-  private void scoreWinnerPoint( Game game, Player setWinner) {
-    if (setWinner.equals(playerOne)) {
-      game.scorePointForPlayerOne(setWinner);
-    } else {
-      game.scorePointForPlayerTwo(setWinner);
-    }
   }
 
   private static Player playGameSet(Player playerOne, Player playerTwo) {
@@ -39,5 +27,22 @@ public class TennisGame {
       return playerOne;
     }
     return playerTwo;
+  }
+
+  private void scoreWinnerPoint(Game game, Player setWinner) {
+    if (setWinner.equals(playerOne)) {
+      game.scorePointForPlayerOne(setWinner);
+    } else {
+      game.scorePointForPlayerTwo(setWinner);
+    }
+  }
+
+  private boolean hasVictoryCondition(Game game, Player gameSetWinner) {
+    int gameSetWinnerScore = game.getPlayerScore(gameSetWinner);
+    if (gameSetWinnerScore < 3) {
+      return false;
+    }
+    int scoreDifference = game.getScoreDifference();
+    return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
   }
 }
