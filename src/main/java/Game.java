@@ -4,7 +4,7 @@ public class Game {
   private int playerOneScore;
   private int playerTwoScore;
   private boolean deuce;
-    private boolean hasWinner;
+  private boolean hasWinner;
   private Player winnerPlayer;
 
   // TODO: Paulo - [feature-01] make it singleton

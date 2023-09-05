@@ -7,8 +7,7 @@ public class Main {
 
     while (keepPlaying) {
       TennisGame tennisGame = new TennisGame();
-      String winnerMessage = tennisGame.playTennisGame();
-      System.out.println(winnerMessage);
+      tennisGame.playTennisGame();
       keepPlaying = keepPlaying(scanner);
     }
 

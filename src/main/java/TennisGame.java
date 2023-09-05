@@ -8,7 +8,7 @@ public class TennisGame {
     this.playerTwo = new Player("Ha");
   }
 
-  public String playTennisGame() {
+  public Game playTennisGame() {
     //start game
     Game game = new Game(playerOne, playerTwo);
     while (!game.hasWinner()) {
@@ -18,7 +18,7 @@ public class TennisGame {
       game.setWinnerPlayer(gameSetWinner);
       game.setHasWinner(true);
     }
-    return game.getWinnerPlayer().getName();
+    return game;
 //
     // print the evolution and after the winner.
 //    System.out.println(playerOneName);
