@@ -1,7 +1,6 @@
 package features.gameset;
 
 import features.player.Player;
-import features.printdisplay.MessageDisplay;
 
 public class GameSet {
 

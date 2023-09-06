@@ -31,18 +31,24 @@ public class ScoreRules {
   private static void displayNormalModeScore(GameSet gameSet) {
     String scorePointsSection;
     if (gameSet.isScoreTie()) {
-      scorePointsSection = String.format("%s ALL",
-          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore()));
+      scorePointsSection =
+        String.format(
+          "%s ALL",
+          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore())
+        );
     } else {
-      scorePointsSection = String.format("%s - %s",
+      scorePointsSection =
+        String.format(
+          "%s - %s",
           SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore()),
-          SCORE_DISPLAY_NAME.get(gameSet.getPlayerTwoScore()));
+          SCORE_DISPLAY_NAME.get(gameSet.getPlayerTwoScore())
+        );
     }
 
     MessageDisplay.gameScore(
-        gameSet.getPlayerOne().getName(),
-        scorePointsSection,
-        gameSet.getPlayerTwo().getName()
+      gameSet.getPlayerOne().getName(),
+      scorePointsSection,
+      gameSet.getPlayerTwo().getName()
     );
   }
 
@@ -51,14 +57,16 @@ public class ScoreRules {
     if (gameSet.isDeuce()) {
       scorePointsSection = "Deuce";
     } else {
-      scorePointsSection = gameSet.getPlayerOne().getName().equals(gameSet.getLastScorePlayer()) ? "Adv - 40" : "40 - Adv";
+      scorePointsSection =
+        gameSet.getPlayerOne().getName().equals(gameSet.getLastScorePlayer())
+          ? "Adv - 40"
+          : "40 - Adv";
     }
 
     MessageDisplay.gameScore(
-        gameSet.getPlayerOne().getName(),
-        scorePointsSection,
-        gameSet.getPlayerTwo().getName()
+      gameSet.getPlayerOne().getName(),
+      scorePointsSection,
+      gameSet.getPlayerTwo().getName()
     );
-
   }
 }

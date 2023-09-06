@@ -27,29 +27,20 @@ public class MessageDisplay {
     printMessage(gameWinner);
   }
 
-  public static void gameInDeuce() {
-    String deuce = "Game is in Deuce";
-    printMessage(deuce);
-  }
-
-  public static void playerGainsAdvantage(String playerName) {
-    String playerGainsAdvantage = String.format(
-      "Player %s has the advantage",
-      playerName
-    );
-    printMessage(playerGainsAdvantage);
-  }
-
   public static void gameStart() {
     printMessage("The game starts!!!!");
   }
 
-  public static void gameScore(String playerOneName, String scoreSection, String playerTwoName) {
+  public static void gameScore(
+    String playerOneName,
+    String scoreSection,
+    String playerTwoName
+  ) {
     String gameFinalScoreBoard = String.format(
-        "%s | %s | %s",
-        playerOneName,
-        scoreSection,
-        playerTwoName
+      "%s | %s | %s",
+      playerOneName,
+      scoreSection,
+      playerTwoName
     );
     printMessage(gameFinalScoreBoard);
   }

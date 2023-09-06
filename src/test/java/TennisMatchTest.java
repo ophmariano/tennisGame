@@ -29,8 +29,13 @@ public class TennisMatchTest {
       gameSet.getPlayerOneScore() - gameSet.getPlayerTwoScore()
     );
     Assertions.assertNotNull(gameSet.getWinnerPlayer());
-    Assertions.assertTrue(gameScoreDifference >= expectedMinimumScoreDifference );
-    Assertions.assertTrue(gameSet.getPlayerScore(gameSet.getWinnerPlayer()) > expectedMinimumScorePoints);
+    Assertions.assertTrue(
+      gameScoreDifference >= expectedMinimumScoreDifference
+    );
+    Assertions.assertTrue(
+      gameSet.getPlayerScore(gameSet.getWinnerPlayer()) >
+      expectedMinimumScorePoints
+    );
   }
 }
 //love-love -> 0
