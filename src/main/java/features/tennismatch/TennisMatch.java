@@ -3,6 +3,7 @@ package features.tennismatch;
 import features.gameset.GameSet;
 import features.player.Player;
 import features.printdisplay.MessageDisplay;
+import features.score.ScoreRules;
 
 public class TennisMatch {
 
@@ -13,22 +14,17 @@ public class TennisMatch {
     Player playerTwo = new Player(playerTwoName);
     GameSet gameSet = new GameSet(playerOne, playerTwo);
     MessageDisplay.gameStart();
-    MessageDisplay.gameScore(gameSet);
+    ScoreRules.displayGameScore(gameSet);
     while (gameSet.getWinnerPlayer() == null) {
       // TODO: Paulo - feature-01 - Display game score
       Player pointWinner = gameSet.playPoint();
       gameSet.scoreWinnerPoint(pointWinner);
-      MessageDisplay.gameScore(gameSet);
-
-      if (gameSet.isDeuce()) {
-        MessageDisplay.playerGainsAdvantage(pointWinner.getName());
-        gameSet.setDeuce(false);
-      }
       if (gameSet.hasVictoryCondition(pointWinner)) {
         gameSet.setWinnerPlayer(pointWinner);
       } else {
         gameSet.checkForDeuce(gameSet, pointWinner);
       }
+      ScoreRules.displayGameScore(gameSet);
     }
     MessageDisplay.winner(gameSet.getWinnerPlayer().getName());
     MessageDisplay.finalGameScore(gameSet);

@@ -11,6 +11,8 @@ public class GameSet {
   private int playerTwoScore;
   private Player winnerPlayer;
   private boolean deuce;
+  private boolean deuceMode;
+  private String lastScorePlayer;
 
   // TODO: Paulo - [feature-01] make it singleton
   public GameSet(Player playerOne, Player playerTwo) {
@@ -23,6 +25,7 @@ public class GameSet {
   public void scorePointForPlayerOne(Player player) {
     if (playerOne.getName().equals(player.getName())) {
       this.playerOneScore++;
+      this.lastScorePlayer = player.getName();
     } else {
       //TODO: Paulo - [feature-01] create custom error class
       String errorMessage = String.format(
@@ -37,6 +40,7 @@ public class GameSet {
   public void scorePointForPlayerTwo(Player player) {
     if (playerTwo.getName().equals(player.getName())) {
       this.playerTwoScore++;
+      this.lastScorePlayer = player.getName();
     } else {
       //TODO: Paulo - [feature-01] - Create custom error class
       String errorMessage = String.format(
@@ -60,10 +64,16 @@ public class GameSet {
     if (gameSet.getPlayerScore(gameSetWinner) < 3) {
       return;
     }
-    if (gameSet.getPlayerOneScore() == gameSet.getPlayerTwoScore()) {
+    if (isScoreTie()) {
       setDeuce(true);
-      MessageDisplay.gameInDeuce();
+      setDeuceMode(true);
+    } else {
+      setDeuce(false);
     }
+  }
+
+  public boolean isScoreTie() {
+    return getPlayerOneScore() == getPlayerTwoScore();
   }
 
   public int getPlayerOneScore() {
@@ -125,5 +135,21 @@ public class GameSet {
     } else {
       scorePointForPlayerTwo(pointWinner);
     }
+  }
+
+  public boolean isDeuceMode() {
+    return deuceMode;
+  }
+
+  public void setDeuceMode(boolean deuceMode) {
+    this.deuceMode = deuceMode;
+  }
+
+  public String getLastScorePlayer() {
+    return lastScorePlayer;
+  }
+
+  public void setLastScorePlayer(String lastScorePlayer) {
+    this.lastScorePlayer = lastScorePlayer;
   }
 }
