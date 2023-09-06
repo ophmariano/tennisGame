@@ -22,37 +22,37 @@ public class GameSet {
   }
 
   public void scorePointForPlayerOne(Player player) {
-    if (playerOne.getName().equals(player.getName())) {
+    if (playerOne.name().equals(player.name())) {
       this.playerOneScore++;
-      this.lastScorePlayer = player.getName();
+      this.lastScorePlayer = player.name();
     } else {
       //TODO: Paulo - [feature-01] create custom error class
       String errorMessage = String.format(
         "Was not able to score points for %s. Informed player was %s",
-        playerOne.getName(),
-        player.getName()
+        playerOne.name(),
+        player.name()
       );
       throw new IllegalArgumentException(errorMessage);
     }
   }
 
   public void scorePointForPlayerTwo(Player player) {
-    if (playerTwo.getName().equals(player.getName())) {
+    if (playerTwo.name().equals(player.name())) {
       this.playerTwoScore++;
-      this.lastScorePlayer = player.getName();
+      this.lastScorePlayer = player.name();
     } else {
       //TODO: Paulo - [feature-01] - Create custom error class
       String errorMessage = String.format(
         "Was not able to score points for %s. Informed player was %s",
-        playerTwo.getName(),
-        player.getName()
+        playerTwo.name(),
+        player.name()
       );
       throw new IllegalArgumentException(errorMessage);
     }
   }
 
   public int getPlayerScore(Player player) {
-    if (playerOne.getName().equals(player.getName())) {
+    if (playerOne.name().equals(player.name())) {
       return getPlayerOneScore();
     } else {
       return getPlayerTwoScore();
@@ -129,7 +129,7 @@ public class GameSet {
   }
 
   public void scoreWinnerPoint(Player pointWinner) {
-    if (playerOne.getName().equals(pointWinner.getName())) {
+    if (playerOne.name().equals(pointWinner.name())) {
       scorePointForPlayerOne(pointWinner);
     } else {
       scorePointForPlayerTwo(pointWinner);
@@ -146,9 +146,5 @@ public class GameSet {
 
   public String getLastScorePlayer() {
     return lastScorePlayer;
-  }
-
-  public void setLastScorePlayer(String lastScorePlayer) {
-    this.lastScorePlayer = lastScorePlayer;
   }
 }

@@ -71,8 +71,8 @@ class GameSetTest {
     int expectedScorePlayerTwo = 0;
     String expectedErrorMessage = String.format(
       "Was not able to score points for %s. Informed player was %s",
-      playerTwo.getName(),
-      playerOne.getName()
+      playerTwo.name(),
+      playerOne.name()
     );
     //When
     Exception exception = assertThrows(
@@ -93,8 +93,8 @@ class GameSetTest {
     int expectedScorePlayerTwo = 0;
     String expectedErrorMessage = String.format(
       "Was not able to score points for %s. Informed player was %s",
-      playerOne.getName(),
-      playerTwo.getName()
+      playerOne.name(),
+      playerTwo.name()
     );
     //When
     Exception exception = assertThrows(

@@ -46,9 +46,9 @@ public class ScoreRules {
     }
 
     MessageDisplay.gameScore(
-      gameSet.getPlayerOne().getName(),
+      gameSet.getPlayerOne().name(),
       scorePointsSection,
-      gameSet.getPlayerTwo().getName()
+      gameSet.getPlayerTwo().name()
     );
   }
 
@@ -58,15 +58,15 @@ public class ScoreRules {
       scorePointsSection = "Deuce";
     } else {
       scorePointsSection =
-        gameSet.getPlayerOne().getName().equals(gameSet.getLastScorePlayer())
+        gameSet.getPlayerOne().name().equals(gameSet.getLastScorePlayer())
           ? "Adv - 40"
           : "40 - Adv";
     }
 
     MessageDisplay.gameScore(
-      gameSet.getPlayerOne().getName(),
+      gameSet.getPlayerOne().name(),
       scorePointsSection,
-      gameSet.getPlayerTwo().getName()
+      gameSet.getPlayerTwo().name()
     );
   }
 }

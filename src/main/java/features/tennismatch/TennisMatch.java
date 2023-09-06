@@ -26,7 +26,7 @@ public class TennisMatch {
       }
       ScoreRules.displayGameScore(gameSet);
     }
-    MessageDisplay.winner(gameSet.getWinnerPlayer().getName());
+    MessageDisplay.winner(gameSet.getWinnerPlayer().name());
     MessageDisplay.finalGameScore(gameSet);
     return gameSet;
   }

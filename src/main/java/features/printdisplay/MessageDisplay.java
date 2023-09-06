@@ -11,10 +11,10 @@ public class MessageDisplay {
   public static void finalGameScore(GameSet gameSet) {
     String gameFinalScoreBoard = String.format(
       "Game total points made was: %s | %s - %s | %s",
-      gameSet.getPlayerOne().getName(),
+      gameSet.getPlayerOne().name(),
       gameSet.getPlayerOneScore(),
       gameSet.getPlayerTwoScore(),
-      gameSet.getPlayerTwo().getName()
+      gameSet.getPlayerTwo().name()
     );
     printMessage(gameFinalScoreBoard);
   }
