@@ -1,3 +1,5 @@
+package features.gameset;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import features.gameset.GameSet;
@@ -84,7 +86,7 @@ class GameSetTest {
 
     //Then
     assertEquals(
-      IllegalArgumentException.class,
+      GameSetInvalidScoringForPlayer.class,
       exception.getCause().getClass()
     );
     assertEquals(expectedErrorMessage, exception.getCause().getMessage());
@@ -110,7 +112,7 @@ class GameSetTest {
 
     //Then
     assertEquals(
-      IllegalArgumentException.class,
+      GameSetInvalidScoringForPlayer.class,
       exception.getCause().getClass()
     );
     assertEquals(expectedErrorMessage, exception.getCause().getMessage());

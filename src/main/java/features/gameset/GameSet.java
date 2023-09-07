@@ -1,6 +1,7 @@
 package features.gameset;
 
 import features.player.Player;
+import features.printdisplay.MessageDisplay;
 
 public class GameSet {
 
@@ -63,10 +64,14 @@ public class GameSet {
   }
 
   public void scoreWinnerPoint(Player pointWinner) {
-    if (playerOne.name().equals(pointWinner.name())) {
-      scorePointForPlayerOne(pointWinner);
-    } else {
-      scorePointForPlayerTwo(pointWinner);
+    try {
+      if (playerOne.name().equals(pointWinner.name())) {
+        scorePointForPlayerOne(pointWinner);
+      } else {
+        scorePointForPlayerTwo(pointWinner);
+      }
+    } catch (GameSetInvalidScoringForPlayer e) {
+      MessageDisplay.logErrorSimulator();
     }
   }
 
@@ -74,33 +79,33 @@ public class GameSet {
     return Math.abs(getPlayerOneScore() - getPlayerTwoScore());
   }
 
-  private void scorePointForPlayerOne(Player player) {
+  private void scorePointForPlayerOne(Player player)
+    throws GameSetInvalidScoringForPlayer {
     if (playerOne.name().equals(player.name())) {
       this.playerOneScore++;
       this.lastScorePlayer = player.name();
     } else {
-      //TODO: Paulo - [feature-01] create custom error class
       String errorMessage = String.format(
         "Was not able to score points for %s. Informed player was %s",
         playerOne.name(),
         player.name()
       );
-      throw new IllegalArgumentException(errorMessage);
+      throw new GameSetInvalidScoringForPlayer(errorMessage);
     }
   }
 
-  private void scorePointForPlayerTwo(Player player) {
+  private void scorePointForPlayerTwo(Player player)
+    throws GameSetInvalidScoringForPlayer {
     if (playerTwo.name().equals(player.name())) {
       this.playerTwoScore++;
       this.lastScorePlayer = player.name();
     } else {
-      //TODO: Paulo - [feature-01] - Create custom error class
       String errorMessage = String.format(
         "Was not able to score points for %s. Informed player was %s",
         playerTwo.name(),
         player.name()
       );
-      throw new IllegalArgumentException(errorMessage);
+      throw new GameSetInvalidScoringForPlayer(errorMessage);
     }
   }
 

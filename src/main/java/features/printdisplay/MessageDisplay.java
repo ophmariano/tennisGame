@@ -44,4 +44,8 @@ public class MessageDisplay {
     );
     printMessage(gameFinalScoreBoard);
   }
+
+  public static void logErrorSimulator() {
+    //Log the error
+  }
 }
