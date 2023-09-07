@@ -22,7 +22,7 @@ public class TennisMatch {
       if (gameSet.hasVictoryCondition(pointWinner)) {
         gameSet.setWinnerPlayer(pointWinner);
       } else {
-        gameSet.checkForDeuce(gameSet, pointWinner);
+        gameSet.checkForDeuce(pointWinner);
       }
       ScoreRules.displayGameScore(gameSet);
     }

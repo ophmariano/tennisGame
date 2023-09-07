@@ -2,6 +2,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import features.gameset.GameSet;
 import features.player.Player;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,7 +48,7 @@ class GameSetTest {
     int expectedScorePlayerOne = 1;
     int expectedScorePlayerTwo = 0;
     //When
-    gameSet.scorePointForPlayerOne(playerOne);
+    gameSet.scoreWinnerPoint(playerOne);
     //Then
     assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
     assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
@@ -58,7 +60,7 @@ class GameSetTest {
     int expectedScorePlayerOne = 0;
     int expectedScorePlayerTwo = 1;
     //When
-    gameSet.scorePointForPlayerTwo(playerTwo);
+    gameSet.scoreWinnerPoint(playerTwo);
     //Then
     assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
     assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
@@ -76,12 +78,16 @@ class GameSetTest {
     );
     //When
     Exception exception = assertThrows(
-      IllegalArgumentException.class,
-      () -> gameSet.scorePointForPlayerTwo(playerOne)
+      InvocationTargetException.class,
+      () -> getscorePointForPlayerTwoMethod().invoke(gameSet, playerOne)
     );
 
     //Then
-    assertEquals(expectedErrorMessage, exception.getMessage());
+    assertEquals(
+      IllegalArgumentException.class,
+      exception.getCause().getClass()
+    );
+    assertEquals(expectedErrorMessage, exception.getCause().getMessage());
     assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
     assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
@@ -98,29 +104,71 @@ class GameSetTest {
     );
     //When
     Exception exception = assertThrows(
-      IllegalArgumentException.class,
-      () -> gameSet.scorePointForPlayerOne(playerTwo)
+      InvocationTargetException.class,
+      () -> getscorePointForPlayerOneMethod().invoke(gameSet, playerTwo)
     );
 
     //Then
-    assertEquals(expectedErrorMessage, exception.getMessage());
+    assertEquals(
+      IllegalArgumentException.class,
+      exception.getCause().getClass()
+    );
+    assertEquals(expectedErrorMessage, exception.getCause().getMessage());
     assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
     assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
   }
 
   @Test
-  void getPlayerScore() {
+  void shouldReturnThePlayerScore() {
     //Given
-    int expectedScorePlayerOne = 0;
     int expectedScorePlayerTwo = 1;
-    gameSet.scorePointForPlayerTwo(playerTwo);
+    scorePointForPlayer(playerTwo, 1);
 
     //When
     int playerScore = gameSet.getPlayerScore(playerTwo);
 
     //Then
+    assertEquals(expectedScorePlayerTwo, playerScore);
+  }
+
+  @Test
+  void gameSetShouldEnterDeuceModeWhenBothPlayerHaveThreePoints() {
+    //Given
+    int expectedScorePlayerOne = 3;
+    int expectedScorePlayerTwo = 3;
+    int scorePointsForDeuce = 3;
+    scorePointForPlayer(playerOne, scorePointsForDeuce);
+    scorePointForPlayer(playerTwo, scorePointsForDeuce);
+
+    //When
+    gameSet.checkForDeuce(playerOne);
+
+    //Then
     assertEquals(expectedScorePlayerOne, gameSet.getPlayerOneScore());
     assertEquals(expectedScorePlayerTwo, gameSet.getPlayerTwoScore());
-    assertEquals(expectedScorePlayerTwo, playerScore);
+    assertTrue(gameSet.isDeuce());
+    assertTrue(gameSet.isDeuceMode());
+  }
+
+  private void scorePointForPlayer(Player player, int score) {
+    for (int i = 0; i < score; i++) {
+      gameSet.scoreWinnerPoint(player);
+    }
+  }
+
+  private Method getscorePointForPlayerOneMethod()
+    throws NoSuchMethodException {
+    Method method =
+      GameSet.class.getDeclaredMethod("scorePointForPlayerOne", Player.class);
+    method.setAccessible(true);
+    return method;
+  }
+
+  private Method getscorePointForPlayerTwoMethod()
+    throws NoSuchMethodException {
+    Method method =
+      GameSet.class.getDeclaredMethod("scorePointForPlayerTwo", Player.class);
+    method.setAccessible(true);
+    return method;
   }
 }

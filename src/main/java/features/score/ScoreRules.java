@@ -30,20 +30,28 @@ public class ScoreRules {
 
   private static void displayNormalModeScore(GameSet gameSet) {
     String scorePointsSection;
-    if (gameSet.isScoreTie()) {
-      scorePointsSection =
-        String.format(
-          "%s ALL",
-          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore())
-        );
-    } else {
-      scorePointsSection =
-        String.format(
-          "%s - %s",
-          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore()),
-          SCORE_DISPLAY_NAME.get(gameSet.getPlayerTwoScore())
-        );
-    }
+    // TODO: Paulo - feature-01: check with PM for this part since it's not on requirements
+    //    if (gameSet.isScoreTie()) {
+    //      scorePointsSection =
+    //        String.format(
+    //          "%s ALL",
+    //          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore())
+    //        );
+    //    } else {
+    //      scorePointsSection =
+    //        String.format(
+    //          "%s - %s",
+    //          SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore()),
+    //          SCORE_DISPLAY_NAME.get(gameSet.getPlayerTwoScore())
+    //        );
+    //    }
+
+    scorePointsSection =
+      String.format(
+        "%s - %s",
+        SCORE_DISPLAY_NAME.get(gameSet.getPlayerOneScore()),
+        SCORE_DISPLAY_NAME.get(gameSet.getPlayerTwoScore())
+      );
 
     MessageDisplay.gameScore(
       gameSet.getPlayerOne().name(),

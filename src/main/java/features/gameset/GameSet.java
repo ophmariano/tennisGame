@@ -21,7 +21,60 @@ public class GameSet {
     this.playerTwoScore = 0;
   }
 
-  public void scorePointForPlayerOne(Player player) {
+  public int getPlayerScore(Player player) {
+    if (playerOne.name().equals(player.name())) {
+      return getPlayerOneScore();
+    } else {
+      return getPlayerTwoScore();
+    }
+  }
+
+  public void checkForDeuce(Player gameSetWinner) {
+    if (getPlayerScore(gameSetWinner) < 3) {
+      return;
+    }
+    if (isScoreTie()) {
+      setDeuce(true);
+      setDeuceMode(true);
+    } else {
+      setDeuce(false);
+    }
+  }
+
+  public boolean isScoreTie() {
+    return getPlayerOneScore() == getPlayerTwoScore();
+  }
+
+  public Player playPoint() {
+    double random = Math.random();
+    if (random > 0.5) {
+      return playerOne;
+    }
+    return playerTwo;
+  }
+
+  public boolean hasVictoryCondition(Player pointWinner) {
+    int gameSetWinnerScore = getPlayerScore(pointWinner);
+    if (gameSetWinnerScore < 3) {
+      return false;
+    }
+    int scoreDifference = getScoreDifference();
+    return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
+  }
+
+  public void scoreWinnerPoint(Player pointWinner) {
+    if (playerOne.name().equals(pointWinner.name())) {
+      scorePointForPlayerOne(pointWinner);
+    } else {
+      scorePointForPlayerTwo(pointWinner);
+    }
+  }
+
+  private int getScoreDifference() {
+    return Math.abs(getPlayerOneScore() - getPlayerTwoScore());
+  }
+
+  private void scorePointForPlayerOne(Player player) {
     if (playerOne.name().equals(player.name())) {
       this.playerOneScore++;
       this.lastScorePlayer = player.name();
@@ -36,7 +89,7 @@ public class GameSet {
     }
   }
 
-  public void scorePointForPlayerTwo(Player player) {
+  private void scorePointForPlayerTwo(Player player) {
     if (playerTwo.name().equals(player.name())) {
       this.playerTwoScore++;
       this.lastScorePlayer = player.name();
@@ -49,30 +102,6 @@ public class GameSet {
       );
       throw new IllegalArgumentException(errorMessage);
     }
-  }
-
-  public int getPlayerScore(Player player) {
-    if (playerOne.name().equals(player.name())) {
-      return getPlayerOneScore();
-    } else {
-      return getPlayerTwoScore();
-    }
-  }
-
-  public void checkForDeuce(GameSet gameSet, Player gameSetWinner) {
-    if (gameSet.getPlayerScore(gameSetWinner) < 3) {
-      return;
-    }
-    if (isScoreTie()) {
-      setDeuce(true);
-      setDeuceMode(true);
-    } else {
-      setDeuce(false);
-    }
-  }
-
-  public boolean isScoreTie() {
-    return getPlayerOneScore() == getPlayerTwoScore();
   }
 
   public int getPlayerOneScore() {
@@ -99,41 +128,12 @@ public class GameSet {
     this.winnerPlayer = winnerPlayer;
   }
 
-  public int getScoreDifference() {
-    return Math.abs(getPlayerOneScore() - getPlayerTwoScore());
-  }
-
   public void setDeuce(boolean deuce) {
     this.deuce = deuce;
   }
 
   public boolean isDeuce() {
     return deuce;
-  }
-
-  public Player playPoint() {
-    double random = Math.random();
-    if (random > 0.5) {
-      return playerOne;
-    }
-    return playerTwo;
-  }
-
-  public boolean hasVictoryCondition(Player pointWinner) {
-    int gameSetWinnerScore = getPlayerScore(pointWinner);
-    if (gameSetWinnerScore < 3) {
-      return false;
-    }
-    int scoreDifference = getScoreDifference();
-    return (gameSetWinnerScore > 3) && (scoreDifference >= 2);
-  }
-
-  public void scoreWinnerPoint(Player pointWinner) {
-    if (playerOne.name().equals(pointWinner.name())) {
-      scorePointForPlayerOne(pointWinner);
-    } else {
-      scorePointForPlayerTwo(pointWinner);
-    }
   }
 
   public boolean isDeuceMode() {
