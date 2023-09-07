@@ -30,7 +30,7 @@ public class ScoreRules {
 
   private static void displayNormalModeScore(GameSet gameSet) {
     String scorePointsSection;
-    // TODO: Paulo - feature-01: check with PM for this part since it's not on requirements
+    // TODO: Paulo - feature-01: check with PM for this part since it's not on requirements but is custom in games
     //    if (gameSet.isScoreTie()) {
     //      scorePointsSection =
     //        String.format(
